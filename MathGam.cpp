@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 #include <cmath>
 #include <conio.h>
 using namespace std;
@@ -9,7 +10,7 @@ void Equation();
 
 int main(){
 
-    char option;
+   	char option;
 	
 	do{
 		system("cls");
@@ -31,7 +32,6 @@ int main(){
 				break;
 		}
 	}while(option != '3');
-
     return 0;
 }
 
@@ -52,7 +52,7 @@ void play(){
 				Equation();
 				break;
 			case '2':
-				24game();
+				
 				break;
 		}
     }while(mode != '3');
@@ -108,7 +108,20 @@ void Equation(){
     }
     cout<<"Press any key to continue..."<<endl;
 	getch();
+   
+}
 
-
-    return;
+void instructions(){
+	system("cls");
+	cout<<"-----------------------------------"<<endl;
+	cout<<"          Instructions			  "<<endl;
+	cout<<"-----------------------------------"<<endl<<endl;
+	cout<<"1. This game contains 2 modes \"Equation\" and \"24 game\""<<endl;
+	cout<<"2. Gaining rank by giving the correct answer in time"<<endl;
+	cout<<"3. Your result will be reveal once you completed all 20 questions "<<endl;
+	cout<<"4. Keep in mind that the difficulty will increase for every correct answer"<<endl;
+	cout<<endl;
+	
+	cout<<"Press any key to continue..."<<endl;
+	getch();
 }
