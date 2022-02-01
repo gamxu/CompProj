@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include <Windows.h>
 #include <cmath>
 #include <conio.h>
 using namespace std;
@@ -10,6 +11,7 @@ void Equation();
 
 int main(){
 
+	srand(time(0));
    	char option;
 	
 	do{
@@ -64,7 +66,23 @@ void Equation(){
     int level=1, limit;
     char operation;
     
+	int elapTicks;
+    double elapMilli, elapSeconds, elapMinutes;
+	clock_t Begin, End;
+	Begin = clock() * CLK_TCK;
+	
+	int qiznum[20]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};	
+	int ttnum[5];	
+	for(int i=0;i<5;i++){
+		ttnum[i]=rand()%20;
+	}
+
+	int k=0;
+	
     for(int i=0; i<20 ;i++){
+
+		system("cls");
+		
         switch(level){
             case 1: limit = 9; break;
             case 2: limit = 99; break;
@@ -100,13 +118,43 @@ void Equation(){
 		 		cout<<q1<<" "<<operation<<" "<<q2<<" = "<<correctAns<<endl;
 			 	
 			} 
-        }
+	
+	    }
 
+		/*if(qiznum[i]==ttnum[k]){			//k declare above
+			.....
+			k++;
+		}
 
+		*/
+
+		cout << "!!NEXT ONE FAST!! (Press Enter)\n";
+		getch();
     
     
     }
-    cout<<"Press any key to continue..."<<endl;
+	
+	system("cls");
+	End = clock() * CLK_TCK;
+	elapTicks = End - Begin;
+    elapMilli = elapTicks / 1000;
+    elapSeconds = elapMilli / 1000;
+    elapMinutes = elapSeconds / 60;
+	cout << "-----------------------------------\n";
+	if (elapSeconds < 1)
+        cout << "It took " << elapMilli << " milliseconds.";
+    else if (elapSeconds == 1)
+        cout << "It took  1 second.";
+    else if (elapSeconds > 1 && elapSeconds < 60)
+        cout << "It took  " << elapSeconds << " seconds.";
+    else if (elapSeconds >= 60)
+        cout << "It took  " << elapMinutes << " minutes.";
+
+	//function that will show you skill result
+
+	cout << "\n-----------------------------------";
+
+    cout<<"\n\nPress any key to continue..."<<endl;
 	getch();
    
 }
