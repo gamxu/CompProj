@@ -8,6 +8,7 @@ using namespace std;
 void play();
 void instructions();
 void Equation();
+int typetest(int);
 
 int main(){
 
@@ -38,6 +39,7 @@ int main(){
 }
 
 void play(){
+	system("cls");
     char mode;
     do{
         cout<<"-----------------------------------"<<endl;
@@ -62,7 +64,7 @@ void play(){
 
 void Equation(){
 
-    float q1, q2, ans, correctAns;
+	float q1, q2, ans, correctAns=0,ttscore=0,ttres=0;
     int level=1, limit;
     char operation;
     
@@ -71,14 +73,7 @@ void Equation(){
 	clock_t Begin, End;
 	Begin = clock() * CLK_TCK;
 	
-	int qiznum[20]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};	
-	int ttnum[5];	
-	for(int i=0;i<5;i++){
-		ttnum[i]=rand()%20;
-	}
-
-	int k=0;
-	
+		
     for(int i=0; i<20 ;i++){
 
 		system("cls");
@@ -120,15 +115,17 @@ void Equation(){
 			} 
 	
 	    }
+		int r1 = rand()%3;
+		int r2 = rand()%3;  
 
-		/*if(qiznum[i]==ttnum[k]){			//k declare above
-			.....
-			k++;
-		}
+				
+			typetest(ttres);
+			ttscore += ttres; 
+		
 
-		*/
+		
 
-		cout << "!!NEXT ONE FAST!! (Press Enter)\n";
+		cout << "\n!!NEXT ONE FAST!! (Press Enter)\n";
 		getch();
     
     
@@ -150,13 +147,45 @@ void Equation(){
     else if (elapSeconds >= 60)
         cout << "It took  " << elapMinutes << " minutes.";
 
-	//function that will show you skill result
+	
+
 
 	cout << "\n-----------------------------------";
 
     cout<<"\n\nPress any key to continue..."<<endl;
 	getch();
    
+}
+
+int typetest(int result){
+	system("cls");
+	int N = rand()%6+3;
+	char t;
+	char c[N];
+    int r;
+
+	
+	string text;
+	         
+        
+    for (int i=0; i<N; i++)
+    {    r = rand() % 26;
+		  t = 'a' + r;
+		  cout << t;
+          c[i] = t;           
+          
+    }
+	string ctext = c;
+	cout << "\nEnter text: ";
+	cin >> text;
+
+	if(text == ctext){
+		cout << "\ncorrect";
+		
+	}else{ 
+		cout << "\nwrong";
+		
+	}
 }
 
 void instructions(){
