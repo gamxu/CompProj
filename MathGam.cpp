@@ -25,6 +25,7 @@ int main(){
 		cout<<"3. Exit"<<endl<<endl;
 		cout<<"Choose Option (1-3):";
 		cin>>option;
+		cin.ignore();
 	
 		switch(option){
 			case '1':
@@ -50,6 +51,7 @@ void play(){
         cout<<"3. Exit"<<endl<<endl;
         cout<<"Choose Modes (1-3):";
         cin>>mode;
+		cin.ignore();
 
         switch(mode){
 			case '1':
@@ -97,6 +99,7 @@ void Equation(){
             cout<<"("<<(i+1)<<"). ";
             cout<<q1<<" "<<operation<<" "<<q2<<" = "; 
             cin>> ans;
+			cin.ignore();
 
             switch(operation){
 			    case '+': correctAns = q1 + q2; break;
@@ -106,22 +109,29 @@ void Equation(){
             if( correctAns == ans ){
 				level++;
 				cout<<"correct."<<endl<<endl;
-			}
-			else{
+				cout << "Next one (Press Enter)";
+				getch();
+
+			}else{
                 level--;
 				cout<<"wrong"<<endl;
 		 		cout<<q1<<" "<<operation<<" "<<q2<<" = "<<correctAns<<endl;
+				cout << "Next one (Press Enter)";
+				getch();
 			 	
 			} 
 	
 	    }
 		int r1 = rand()%3;
-		int r2 = rand()%3;  
+		int r2 = rand()%3;
+		int r3 = rand()%3;
 
-				
+		if(true){		
 			typetest(ttres);
 			ttscore += ttres; 
-		
+		}else if(r2==r3){
+			//for some more mini game
+		}
 
 		
 
@@ -164,9 +174,14 @@ int typetest(int result){
 	char c[N];
     int r;
 
-	
+	cout << "--------!!!Mini Game Appear!!!--------\n";
+	cout << "       Copy the alphabets given\n\n";
+
 	string text;
-	         
+
+	cout << "-->  ";
+
+	for (int i=0; i<9; i++) c[i] = 0;          
         
     for (int i=0; i<N; i++)
     {    r = rand() % 26;
@@ -175,16 +190,20 @@ int typetest(int result){
           c[i] = t;           
           
     }
+	cout << endl;
 	string ctext = c;
 	cout << "\nEnter text: ";
-	cin >> text;
+	getline(cin,text);
 
 	if(text == ctext){
 		cout << "\ncorrect";
-		
+		return 1;
 	}else{ 
 		cout << "\nwrong";
-		
+		cout << "Correct Ans: " << ctext << endl;
+		cout << "Your Ans: " << text << endl;
+
+		return 0;
 	}
 }
 
