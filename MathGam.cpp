@@ -3,12 +3,18 @@
 #include <Windows.h>
 #include <cmath>
 #include <conio.h>
+#include <vector>
+#include <time.h>
+#include <cstdlib>
 using namespace std;
 
 void play();
 void instructions();
 void Equation();
-int typetest(int &);
+int typetest(int);
+void CalParentheses(int, int, char, double &);
+double Parentheses();
+int game24();
 
 int main(){
 
@@ -58,7 +64,7 @@ void play(){
 				Equation();
 				break;
 			case '2':
-				
+				game24();
 				break;
 		}
     }while(mode != '3');
@@ -66,8 +72,8 @@ void play(){
 
 void Equation(){
 
-	float q1, q2, ans, correctAns=0;
-    int level=1, limit,ttscore=0,ttres=0,calscore=0;
+	float q1, q2, ans, correctAns=0,ttscore=0,ttres=0;
+    int level=1, limit;
     char operation;
     
 	int elapTicks;
@@ -84,51 +90,52 @@ void Equation(){
             case 1: limit = 9; break;
             case 2: limit = 99; break;
             case 3: limit = 999; break;
-			case 4: limit = 9999; break;
         }
 
-        
-        q1 = rand()%limit+1;
-        q2 = rand()%limit+1;
+        if(level<4){
+            q1 = rand()%limit+1;
+            q2 = rand()%limit+1;
 
-        int tmpOp = rand()%3;
-        switch(tmpOp){
-            case 0: operation = '+'; break;
-            case 1: operation = '-'; break;
-            case 2: operation = '*'; break; 
-        }
-        cout<<"("<<(i+1)<<"). ";
-        cout<<q1<<" "<<operation<<" "<<q2<<" = "; 
-        cin>> ans;
-		cin.ignore();
+            int tmpOp = rand()%3;
+            switch(tmpOp){
+                case 0: operation = '+'; break;
+                case 1: operation = '-'; break;
+                case 2: operation = '*'; break; 
+            }
+            cout<<"("<<(i+1)<<"). ";
+            cout<<q1<<" "<<operation<<" "<<q2<<" = "; 
+            cin>> ans;
+			cin.ignore();
 
-        switch(operation){
-		    case '+': correctAns = q1 + q2; break;
-			case '-': correctAns = q1 - q2; break;
-			case '*': correctAns = q1 * q2; break; 
-	 	}
-        if( correctAns == ans ){
-			level++;
-			calscore++;
-			
-		}else{
-            level--;
-			cout<<"wrong"<<endl;
-			cout<<q1<<" "<<operation<<" "<<q2<<" = "<<correctAns<<endl;
-			cout << "(Press Enter)";
-			getch();
+            switch(operation){
+			    case '+': correctAns = q1 + q2; break;
+				case '-': correctAns = q1 - q2; break;
+				case '*': correctAns = q1 * q2; break; 
+	 		}
+            if( correctAns == ans ){
+				level++;
+				cout<<"correct."<<endl<<endl;
+				cout << "Next one (Press Enter)";
+				getch();
+
+			}else{
+                level--;
+				cout<<"wrong"<<endl;
+		 		cout<<q1<<" "<<operation<<" "<<q2<<" = "<<correctAns<<endl;
+				cout << "Next one (Press Enter)";
+				getch();
 			 	
-		} 
+			} 
 	
-	    
+	    }
 		int r1 = rand()%3;
 		int r2 = rand()%3;
 		int r3 = rand()%3;
 
-		if(r1==r2||r2==r3){		
+		if(true){		
 			typetest(ttres);
 			ttscore += ttres; 
-		}else if(false){
+		}else if(r2==r3){
 			//for some more mini game
 		}
 
@@ -156,42 +163,17 @@ void Equation(){
     else if (elapSeconds >= 60)
         cout << "It took  " << elapMinutes << " minutes.";
 
-	string timeuse, typeskill, calskill;
+	
 
-	if(elapMinutes>5) timeuse = "Very Slow!";
-	else if(elapMinutes>4) timeuse = "Slow!";
-	else if(elapMinutes>3) timeuse = "OK!";
-	else if(elapMinutes>2) timeuse = "Fast!";
-	else if(elapMinutes>1) timeuse = "Very Fast!";
-	else if(elapMinutes<1) timeuse = "Fast AF!!!";
-
-	if(ttscore>10) typeskill = "God";
-	else if(ttscore>8) typeskill = "Pro";
-	else if(ttscore>6) typeskill = "Great";
-	else if(ttscore>4) typeskill = "Average";
-	else if(ttscore>2) typeskill = "Inexperience";
-	else typeskill = "Noob";
-
-	switch(level){
-		case 1: calskill = "Noob"; break;
-		case 2: calskill = "Average"; break;
-		case 3:	calskill = "Pro"; break;
-		case 4:	calskill = "God"; break;
-	}
-
-	cout << "\nYou are " << timeuse;
-	cout << "\nYour caculating score: " << calscore;
-	cout << "\nYour typeing score: " << ttscore;
 
 	cout << "\n-----------------------------------";
 
     cout<<"\n\nPress any key to continue..."<<endl;
 	getch();
-
    
 }
 
-int typetest(int &result){
+int typetest(int result){
 	system("cls");
 	int N = rand()%6+3;
 	char t;
@@ -221,13 +203,13 @@ int typetest(int &result){
 
 	if(text == ctext){
 		cout << "\ncorrect";
-		return result=1;
+		return 1;
 	}else{ 
 		cout << "\nwrong";
 		cout << "Correct Ans: " << ctext << endl;
 		cout << "Your Ans: " << text << endl;
 
-		return result=0;
+		return 0;
 	}
 }
 
@@ -244,4 +226,181 @@ void instructions(){
 	
 	cout<<"Press any key to continue..."<<endl;
 	getch();
+}
+
+void CalParentheses(int N1, int N2, char Sym, double &sum)
+{
+    switch (Sym)
+    {
+    case '+':
+        sum = N1 + N2;
+        break;
+
+    case '-':
+        sum = N1 - N2;
+        break;
+
+    case '*':
+        sum = N1 * N2;
+        break;
+
+    case '/':
+        sum = N1 / N2;
+        break;
+
+    default:
+        break;
+    }
+}
+
+double Parentheses()
+{
+    char symbol;
+    int N = 2;
+    double parentheses[N], Sum[N], Ans;
+    int N1[N], N2[N];
+    char Sym[N];
+    string say;
+    do
+    {
+        for (int i = 0; i < N; i++)
+        {
+            cout << "Parentheses " << i + 1 << " : ";
+            cin >> N1[i] >> Sym[i] >> N2[i];
+        }
+        cout << "What do you want to do with the Two parentheses ? : ";
+        cin >> symbol;
+        for (int i = 0; i < N; i++)
+        {
+            cout << "(" << N1[i] << " " << Sym[i] << " " << N2[i] << ")";
+            if (i == 0)
+            {
+                cout << symbol;
+            }
+        }
+        cout << "Do you think this way ? [Y|N] : ";
+        cin >> say;
+    } while (say == "N" || say == "n");
+    for (int i = 0; i < N; i++)
+    {
+        CalParentheses(N1[i], N2[i], Sym[i], Sum[i]);
+    }
+    CalParentheses(Sum[0], Sum[1], symbol, Ans);
+    return Ans;
+}
+
+int game24()
+{
+    int elapTicks;
+    int N = 4;
+    double elapMilli, elapSeconds, elapMinutes;
+    clock_t Begin, End;
+    Begin = clock() * CLK_TCK;
+    vector<int> number;
+    if (N == 5 || N == 4)
+    {
+        for (int i = 0; i < N; i++)
+        {
+            number.push_back(rand() % 10);
+        }
+        for (int i = 0; i < N; i++)
+        {
+            cout << number[i] << " ";
+        }
+    }
+    //กดปุ่มอะไรก็ได้เพื่อหยุดเวลา
+    getch();
+    End = clock() * CLK_TCK;
+    elapTicks = End - Begin;
+    elapMilli = elapTicks / 1000;
+    elapSeconds = elapMilli / 1000;
+    elapMinutes = elapSeconds / 60;
+    //แสดงเวลา
+    if (elapSeconds < 1)
+        cout << "\nIt took " << elapMilli << " milliseconds.";
+    else if (elapSeconds == 1)
+        cout << "\nIt took  1 second.";
+    else if (elapSeconds > 1 && elapSeconds < 60)
+        cout << "\nIt took  " << elapSeconds << " seconds.";
+    else if (elapSeconds >= 60)
+        cout << "\nIt took  " << elapMinutes << " minutes.";
+
+    //โชว์การคำนวน
+    double sum;
+    char symbol;
+    int a, b, c;
+    string SumParentheses;
+    while (sum != 24)
+    {
+        cout << "Do you want to use parentheses? [Y|N] : ";
+        cin >> SumParentheses;
+        if (SumParentheses == "Y" || SumParentheses == "y")
+        {
+            sum = Parentheses();
+        }
+        if (SumParentheses == "N" || SumParentheses == "n")
+        {
+            cout << "first : ";
+            cin >> a >> symbol >> b;
+            switch (symbol)
+            {
+            case '+':
+                sum = a + b;
+                break;
+
+            case '-':
+                sum = a - b;
+                break;
+
+            case '*':
+                sum = a * b;
+                break;
+
+            case '/':
+                sum = a / b;
+                break;
+
+            default:
+                break;
+            }
+            int i = 0;
+            while (i < 2)
+            {
+                cout << "Next : " << sum;
+                cin >> symbol >> c;
+                switch (symbol)
+                {
+                case '+':
+                    sum += c;
+                    break;
+
+                case '-':
+                    sum -= c;
+                    break;
+
+                case '*':
+                    sum *= c;
+                    break;
+
+                case '/':
+                    sum /= c;
+                    break;
+
+                default:
+                    break;
+                }
+                i++;
+            }
+            if (sum != 24)
+            {
+                cout << "\n-----Not correct-----\n";
+            }
+        }
+    }
+    if (sum == 24)
+    {
+        cout << "\n-----correct-----";
+    }
+
+    return 0;
 }
