@@ -72,8 +72,8 @@ void play(){
 
 void Equation(){
 
-	float q1, q2, ans, correctAns=0,ttscore=0,ttres=0;
-    int level=1, limit;
+	float q1, q2, ans, correctAns=0;
+    int level=1, limit,ttscore=0,ttres=0,calscore=0;
     char operation;
     
 	int elapTicks;
@@ -163,8 +163,32 @@ void Equation(){
     else if (elapSeconds >= 60)
         cout << "It took  " << elapMinutes << " minutes.";
 
-	
+	string timeuse, typeskill, calskill;
 
+	if(elapMinutes>5) timeuse = "Very Slow!";
+	else if(elapMinutes>4) timeuse = "Slow!";
+	else if(elapMinutes>3) timeuse = "OK!";
+	else if(elapMinutes>2) timeuse = "Fast!";
+	else if(elapMinutes>1) timeuse = "Very Fast!";
+	else if(elapMinutes<1) timeuse = "Fast AF!!!";
+
+	if(ttscore>10) typeskill = "God";
+	else if(ttscore>8) typeskill = "Pro";
+	else if(ttscore>6) typeskill = "Great";
+	else if(ttscore>4) typeskill = "Average";
+	else if(ttscore>2) typeskill = "Inexperience";
+	else typeskill = "Noob";
+
+	switch(level){
+		case 1: calskill = "Noob"; break;
+		case 2: calskill = "Average"; break;
+		case 3:	calskill = "Pro"; break;
+		case 4:	calskill = "God"; break;
+	}
+
+	cout << "\nYou are " << timeuse;
+	cout << "\nYour caculating score: " << calscore;
+	cout << "\nYour typeing score: " << ttscore;
 
 	cout << "\n-----------------------------------";
 
