@@ -132,7 +132,7 @@ void Equation(){
 		int r2 = rand()%3;
 		int r3 = rand()%3;
 
-		if(true){		
+		if(r1==r2||r2==r3){		
 			typetest(ttres);
 			ttscore += ttres; 
 		}else if(r2==r3){
