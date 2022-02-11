@@ -489,30 +489,34 @@ int game24()
         if (sum != 24)
         {
             string AskCalculateagain;
-            cout << "\n-----Not correct-----\n";
+            cout << "\n-----Not correct-----\n" << endl;
             cout << "Calculate again [Y|N] : ";
             cin >> AskCalculateagain;
             if (AskCalculateagain == "N" || AskCalculateagain == "n")
             {
-                cout << "1.Play game 24 again.\n2.Game modes.\nAnswer : ";
+                cout << "\n1.Play game 24 again.\n2.Back to Game Modes.\nYour choice : ";
                 cin >> AskExitGame24;
                 if (AskExitGame24 == 2)
                 {
+                    system("cls");
                     break;
                 }else{
+                    system("cls");
                     game24();
                 }
             }
         }
         if (sum == 24)
         {
-            cout << "\n-----correct-----\n";
+            cout << "\n-----correct-----\n" << endl;
             cout << "1.Play game 24 again.\n2.Game modes.\nAnswer : ";
                 cin >> AskExitGame24;
                 if (AskExitGame24 == 2)
                 {
+                    system("cls");
                     break;
                 }else{
+                    system("cls");
                     game24();
                 }
         }
