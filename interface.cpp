@@ -82,6 +82,7 @@ void play()
             break;
         case '2':
             game24();
+            system("cls");
             break;
         }
     } while (mode != '3');
@@ -99,7 +100,7 @@ void Equation()
     clock_t Begin, End;
     Begin = clock() * CLK_TCK;
 
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < 10; i++)
     {
 
         system("cls");
@@ -170,6 +171,7 @@ void Equation()
                 getch();
             }
         }
+        
         int r1 = rand() % 3;
         int r2 = rand() % 3;
         int r3 = rand() % 3;
@@ -181,11 +183,11 @@ void Equation()
         }
         else if (r2 == r3)
         {
-            // for some more mini game
+            cout << "just a break";
+            getch();
         }
 
-        cout << "\n!!NEXT ONE FAST!! (Press Enter)\n";
-        getch();
+        
     }
 
     system("cls");
@@ -384,6 +386,7 @@ double Parentheses()
 
 int game24()
 {
+    system("cls");
     int elapTicks;
     int N = 4;
     double elapMilli, elapSeconds, elapMinutes;
@@ -503,6 +506,7 @@ int game24()
                 }else{
                     system("cls");
                     game24();
+                    break;
                 }
             }
         }
@@ -518,6 +522,7 @@ int game24()
                 }else{
                     system("cls");
                     game24();
+                    break;
                 }
         }
     }
