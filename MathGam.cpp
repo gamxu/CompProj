@@ -11,7 +11,7 @@ using namespace std;
 void play();
 void instructions();
 void Equation();
-int typetest(int);
+int typetest();
 void CalParentheses(int, int, char, double &);
 double Parentheses();
 int game24();
@@ -110,8 +110,6 @@ void Equation()
             break;
         }
 
-        if (level < 4)
-        {
             q1 = rand() % limit + 1;
             q2 = rand() % limit + 1;
 
@@ -148,6 +146,7 @@ void Equation()
             if (correctAns == ans)
             {
                 level++;
+                calscore++;
                 cout << "correct." << endl
                      << endl;
                 cout << "Next one (Press Enter)";
@@ -161,19 +160,12 @@ void Equation()
                 cout << "Next one (Press Enter)";
                 getch();
             }
-        }
+        
         int r1 = rand() % 3;
-        int r2 = rand() % 3;
-        int r3 = rand() % 3;
 
-        if (r1 == r2 || r2 == r3)
+        if (r1 == 1)
         {
-            typetest(ttres);
-            ttscore += ttres;
-        }
-        else if (r2 == r3)
-        {
-            // for some more mini game
+            ttscore += typetest();
         }
 
         cout << "\n!!NEXT ONE FAST!! (Press Enter)\n";
@@ -196,7 +188,7 @@ void Equation()
     else if (elapSeconds >= 60)
         cout << "It took  " << elapMinutes << " minutes.";
 
-    string timeuse, typeskill, calskill;
+    string timeuse;
 
     if (elapMinutes > 5)
         timeuse = "Very Slow!";
@@ -211,35 +203,6 @@ void Equation()
     else if (elapMinutes < 1)
         timeuse = "Fast AF!!!";
 
-    if (ttscore > 10)
-        typeskill = "God";
-    else if (ttscore > 8)
-        typeskill = "Pro";
-    else if (ttscore > 6)
-        typeskill = "Great";
-    else if (ttscore > 4)
-        typeskill = "Average";
-    else if (ttscore > 2)
-        typeskill = "Inexperience";
-    else
-        typeskill = "Noob";
-
-    switch (level)
-    {
-    case 1:
-        calskill = "Noob";
-        break;
-    case 2:
-        calskill = "Average";
-        break;
-    case 3:
-        calskill = "Pro";
-        break;
-    case 4:
-        calskill = "God";
-        break;
-    }
-
     cout << "\nYou are " << timeuse;
     cout << "\nYour caculating score: " << calscore;
     cout << "\nYour typeing score: " << ttscore;
@@ -250,7 +213,7 @@ void Equation()
     getch();
 }
 
-int typetest(int result)
+int typetest()
 {
     system("cls");
     int N = rand() % 6 + 3;
