@@ -63,6 +63,7 @@ int main()
     system("cls");
     system("color A");
     cout << "THANKS YOU FOR PLAYING xD";
+    getch();
     return 0;
 }
 
