@@ -18,7 +18,7 @@ int game24();
 
 int main()
 {
-    
+
     srand(time(0));
     char option;
 
@@ -26,11 +26,21 @@ int main()
     {
         system("cls");
         system("color 6");
-        cout << char(201);      for(int i=0; i<36; i++){cout << char(205);}      cout << char(187) << endl;
+        cout << char(201);
+        for (int i = 0; i < 36; i++)
+        {
+            cout << char(205);
+        }
+        cout << char(187) << endl;
         cout << char(186) << "                                    " << char(186) << endl;
         cout << char(186) << "            MATHS GAME	             " << char(186) << endl;
         cout << char(186) << "                                    " << char(186) << endl;
-        cout << char(200);      for(int i=0; i<36; i++){cout << char(205);}      cout << char(188) << endl;
+        cout << char(200);
+        for (int i = 0; i < 36; i++)
+        {
+            cout << char(205);
+        }
+        cout << char(188) << endl;
 
         cout << "           1. Play" << endl;
         cout << "           2. Instructions" << endl;
@@ -117,66 +127,62 @@ void Equation()
             limit = 999;
             break;
         }
+        q1 = rand() % limit + 1;
+        q2 = rand() % limit + 1;
 
-        if (level < 4)
+        int tmpOp = rand() % 3;
+        switch (tmpOp)
         {
-            q1 = rand() % limit + 1;
-            q2 = rand() % limit + 1;
-
-            int tmpOp = rand() % 3;
-            switch (tmpOp)
-            {
-            case 0:
-                operation = '+';
-                break;
-            case 1:
-                operation = '-';
-                break;
-            case 2:
-                operation = '*';
-                break;
-            }
-            cout << "(" << (i + 1) << "). ";
-            cout << q1 << " " << operation << " " << q2 << " = ";
-            cin >> ans;
-            cin.ignore();
-
-            switch (operation)
-            {
-            case '+':
-                correctAns = q1 + q2;
-                break;
-            case '-':
-                correctAns = q1 - q2;
-                break;
-            case '*':
-                correctAns = q1 * q2;
-                break;
-            }
-            if (correctAns == ans)
-            {
-                level++;
-                calscore++;
-                cout << "correct." << endl
-                     << endl;
-                cout << "Next one (Press Enter)";
-                getch();
-            }
-            else
-            {
-                level--;
-                cout << "wrong" << endl;
-                cout << q1 << " " << operation << " " << q2 << " = " << correctAns << endl;
-                cout << "MORE Careful! with your Answer next time..." << endl;
-                cout << "Next one (Press Enter)";
-                getch();
-            }
+        case 0:
+            operation = '+';
+            break;
+        case 1:
+            operation = '-';
+            break;
+        case 2:
+            operation = '*';
+            break;
         }
-        
+        cout << "(" << (i + 1) << "). ";
+        cout << q1 << " " << operation << " " << q2 << " = ";
+        cin >> ans;
+        cin.ignore();
+
+        switch (operation)
+        {
+        case '+':
+            correctAns = q1 + q2;
+            break;
+        case '-':
+            correctAns = q1 - q2;
+            break;
+        case '*':
+            correctAns = q1 * q2;
+            break;
+        }
+        if (correctAns == ans)
+        {
+            level++;
+            calscore++;
+            cout << "correct." << endl
+                 << endl;
+            cout << "Next one (Press Enter)";
+            getch();
+        }
+        else
+        {
+            level--;
+            cout << "wrong" << endl;
+            cout << q1 << " " << operation << " " << q2 << " = " << correctAns << endl;
+            cout << "MORE Careful! with your Answer next time..." << endl;
+            cout << "Next one (Press Enter)";
+            getch();
+        }
+
         int r1 = rand() % 3;
-    
-        if (r1 == 1) ttscore += typetest();
-           
+
+        if (r1 == 1)
+            ttscore += typetest();
     }
 
     system("cls");
@@ -210,7 +216,7 @@ void Equation()
     else if (elapMinutes < 1)
         timeuse = "Fast AF!!!";
 
-        cout << "\nYou are " << timeuse;
+    cout << "\nYou are " << timeuse;
     cout << "\nYour caculating score: " << calscore;
     cout << "\nYour typeing score: " << ttscore;
 
@@ -452,7 +458,8 @@ int game24()
         if (sum != 24)
         {
             string AskCalculateagain;
-            cout << "\n-----Not correct-----\n" << endl;
+            cout << "\n-----Not correct-----\n"
+                 << endl;
             cout << "Calculate again [Y|N] : ";
             cin >> AskCalculateagain;
             if (AskCalculateagain == "N" || AskCalculateagain == "n")
@@ -463,7 +470,9 @@ int game24()
                 {
                     system("cls");
                     break;
-                }else{
+                }
+                else
+                {
                     system("cls");
                     game24();
                     break;
@@ -472,18 +481,21 @@ int game24()
         }
         if (sum == 24)
         {
-            cout << "\n-----correct-----\n" << endl;
+            cout << "\n-----correct-----\n"
+                 << endl;
             cout << "1.Play game 24 again.\n2.Game modes.\nAnswer : ";
-                cin >> AskExitGame24;
-                if (AskExitGame24 == 2)
-                {
-                    system("cls");
-                    break;
-                }else{
-                    system("cls");
-                    game24();
-                    break;
-                }
+            cin >> AskExitGame24;
+            if (AskExitGame24 == 2)
+            {
+                system("cls");
+                break;
+            }
+            else
+            {
+                system("cls");
+                game24();
+                break;
+            }
         }
     }
 
