@@ -281,7 +281,7 @@ void instructions()
          << endl;
     cout << "1. This game contains 2 modes \"Equation\" and \"24 game\"" << endl;
     cout << "2. Gaining rank by giving the correct answer in time" << endl;
-    cout << "3. Your result will be reveal once you completed all 20 questions " << endl;
+    cout << "3. Your result will be reveal once you completed all 10 questions " << endl;
     cout << "4. Keep in mind that the difficulty will increase for every correct answer" << endl;
     cout << endl;
 
